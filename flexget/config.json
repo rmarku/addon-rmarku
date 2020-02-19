@@ -1,9 +1,9 @@
 {
-    "name": "Example",
+    "name": "FlexGet",
     "version": "dev",
-    "slug": "example",
-    "description": "Example add-on by Community Hass.io Add-ons",
-    "url": "https://github.com/hassio-addons/addon-example",
+    "slug": "FlexGet",
+    "description": "FlexGet for HAssio",
+    "url": "https://github.com/rmarku/addon-rmarku",
     "startup": "application",
     "arch": [
         "aarch64",

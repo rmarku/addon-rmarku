@@ -1,4 +1,7 @@
-ARG BUILD_FROM=hassioaddons/base:6.0.1
+ARG BUILD_FROM=hassioaddons/base:7.0.0
+
+ARG FLEXGET_VERSION="3.1.26"
+
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -16,14 +19,27 @@ ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
 
+# Flexget
+RUN addgroup -g 101 -S flexget && \
+    adduser -u 100 -S -G flexget flexget && \
+    apk add --update python3 py3-pip
+
+
+RUN mkdir /flexget
+
+
+VOLUME /flexget
+
+RUN pip3 install  flexget
+
 # Labels
 LABEL \
-    io.hass.name="Example" \
-    io.hass.description="Example add-on by Community Hass.io Add-ons" \
+    io.hass.name="FlexGet" \
+    io.hass.description="FlexGet add-on by MarkU" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Franck Nijhof <frenck@addons.community>" \
+    maintainer="Martin Marcucci <rmarku@addons.community>" \ 
     org.label-schema.description="Example add-on by Community Hass.io Add-ons" \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="Example" \
